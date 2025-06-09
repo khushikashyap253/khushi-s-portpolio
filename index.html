@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Khushi's Portfolio</title>
+<style>
+  * {
+    margin:0; padding:0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #001133;
+    color: #fff;
+    line-height: 1.6;
+  }
+  nav {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    position: sticky;
+    top: 0;
+    padding: 1rem 0;
+    z-index: 1000;
+  }
+  nav button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  nav button:hover,
+  nav button.active {
+    background: #00ffff;
+    color: #000;
+  }
+  section {
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: auto;
+    display: none;
+  }
+  section.active {
+    display: block;
+  }
+  .home-photo {
+    max-width: 250px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #00ffffaa;
+    display: block;
+    margin: 1rem auto;
+  }
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .resume-btn {
+    display: block;
+    background: #007bff;
+    color: white;
+    width: 200px;
+    text-align: center;
+    margin: 1rem auto;
+    padding: 0.7rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .resume-btn:hover {
+    background: #0056b3;
+  }
+  .skills-list, .experience-list, .projects-list {
+    max-width: 700px;
+    margin: auto;
+  }
+  .skill-item, .exp-item, .project-item {
+    background: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px #00ffff55;
+  }
+  .contact-form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .contact-form input, .contact-form textarea {
+    padding: 0.7rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+  }
+  .contact-form button {
+    background: #04AA6D;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .contact-form button:hover {
+    background: #038f58;
+  }
+  @media (max-width:600px){
+    nav {
+      flex-wrap: wrap;
+    }
+    .home-photo {
+      max-width: 150px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="nav-btn active" data-target="home">Home</button>
+  <button class="nav-btn" data-target="skills">Skills & Experience</button>
+  <button class="nav-btn" data-target="projects">Projects & Contact</button>
+</nav>
+
+<section id="home" class="active">
+  <h1>Hello, I'm Khushi</h1>
+  <img src="khushi's photo.jpeg" alt="Khushi's Photo" class="home-photo" />
+  <p style="max-width:700px; margin:auto; text-align:center; font-size:1.2rem;">
+    I’m a passionate web developer pursuing BCA. I love creating responsive and interactive websites using modern web technologies.
+  </p>
+  <a href="Khushi_Kashyap_Resume.pdf" class="resume-btn" target="_blank">Download Resume</a>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-list">
+    <div class="skill-item"><strong>HTML:</strong> 90%</div>
+    <div class="skill-item"><strong>CSS:</strong> 85%</div>
+    <div class="skill-item"><strong>JavaScript:</strong> 75%</div>
+    <div class="skill-item"><strong>Microsoft Excel:</strong> 80%</div>
+  </div>
+  <h2 style="margin-top:2rem;">Work Experience</h2>
+  <div class="experience-list">
+    <div class="exp-item">
+      <strong>HTML Developer</strong><br />
+      Worked on multiple frontend projects using HTML, CSS, JS, and integrated tools like Microsoft Excel.
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects-list">
+    <div class="project-item">
+      <strong>Music Player</strong> - A stylish music player using HTML, CSS, and JavaScript.
+    </div>
+    <div class="project-item">
+      <strong>Excel Data Visualizer</strong> - A frontend interface that visualizes Excel data with charts and tables.
+    </div>
+    <div class="project-item">
+      <strong>Simple Video Editor</strong> - Frontend layout for a video editing tool built using HTML and JS.
+    </div>
+    <div class="project-item">
+      <strong>Personal Portfolio</strong> - This portfolio itself — fully responsive and built with love.
+    </div>
+  </div>
+
+  <h2 style="margin-top:2rem;">Contact Me</h2>
+  <form class="contact-form" onsubmit="return contactSubmit(event)">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll('.nav-btn');
+  const sections = document.querySelectorAll('section');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active from buttons & sections
+      buttons.forEach(b => b.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+
+      // Add active on clicked button and corresponding section
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+
+  function contactSubmit(e){
+    e.preventDefault();
+    alert('Thank you for contacting me! I will get back to you soon.');
+    e.target.reset();
+    return false;
+  }
+</script>
+
+</body>
+</html>
